@@ -1,6 +1,7 @@
 # Iterative Compositional Data Generation for Robot Control
 
 This repository implements the method described in "Iterative Compositional Data Generation for Robot Control" (Pham et al.). The code provides an iterative self-improvement procedure for generating high-quality synthetic robotic manipulation data using a semantic compositional diffusion transformer.
+[diagram_suggest.pdf](https://github.com/user-attachments/files/24090155/diagram_suggest.pdf)
 
 **Key contributions:**
 - **Semantic Compositional Diffusion Transformer**: Factorizes transitions into robot-, object-, obstacle-, and objective-specific components
