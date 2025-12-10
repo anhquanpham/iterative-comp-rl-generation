@@ -1,0 +1,25 @@
+defaults:
+    - _self_
+
+exp: full
+base_path: _offline_training
+algo: iql
+update_start_step: 20000
+n_steps: 500000
+task_id: 0
+
+dataset:
+  dir: <> # TO SET
+  task_list_path: "_train_test_splits"
+  split: default # Options: default, compositional, holdout
+  type: expert # Options: expert, medium, medium-random-subsampled, random, sac
+  holdout_elem: None # Only needs to be set when split=holdout
+  seed: 0
+  partial:
+    use: False
+    remove_elems: ["IIWA"]
+    n_tasks: 64
+
+hydra:
+  run:
+    dir: ./_finetune_training/${dataset.type}/${dataset.split}/${exp}/${algo}/${dataset.seed}/${update_start_step}/task_${task_id}

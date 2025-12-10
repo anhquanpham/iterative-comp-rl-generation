@@ -1,0 +1,79 @@
+# Diffusion Transformer (DiT) configuration.
+
+# Model the terminals and discretize them with threshold 0.5.
+modelled_terminals = True
+make_inputs.modelled_terminals = %modelled_terminals
+split_diffusion_samples.modelled_terminals = %modelled_terminals
+split_diffusion_samples.terminal_threshold = 0.5
+
+construct_diffusion_model.normalizer_type = 'standard'
+# No normalization on the terminals.
+construct_diffusion_model.disable_terminal_norm = True
+
+# DiT Network Configuration
+# Note: d_in (164) = state(77) + action(8) + reward(1) + next_state(77) + terminal(1)
+# Indicators (16 dims) are passed SEPARATELY via cond_dim, NOT included in d_in!
+# For standard patching: any patch_size works (padding will be added if needed)
+# 164 is divisible by: 1, 2, 4, 41, 82, 164 (no padding needed)
+# Other patch sizes (e.g., 14) will automatically pad to nearest multiple
+
+# Option 1: Use predefined DiT model sizes
+# Available: DiT1D-XS, DiT1D-S, DiT1D-B, DiT1D-L, DiT1D-XL
+# Uncomment one of these to use predefined configurations:
+# construct_diffusion_model.denoiser = 'DiT1D-S'   # Small: 384 hidden, 8 depth, 6 heads
+# construct_diffusion_model.denoiser = 'DiT1D-B'   # Base: 512 hidden, 12 depth, 8 heads
+# construct_diffusion_model.denoiser = 'DiT1D-L'   # Large: 768 hidden, 16 depth, 12 heads
+
+# Option 2: Custom DiT configuration (using 'dit' or 'dit_custom')
+# Explicitly set denoiser to 'dit' to use custom configuration
+construct_diffusion_model.denoiser = 'dit'
+
+# Configuration matching MLP total params (~25.8M, same as 25.9M MLP baseline)
+construct_diffusion_model.dit_hidden_size = 416
+construct_diffusion_model.dit_depth = 8
+construct_diffusion_model.dit_num_heads = 8
+construct_diffusion_model.dit_patch_size = 15     # Standard patching: 164 padded to 165 = 11 patches
+construct_diffusion_model.dit_mlp_ratio = 4.0
+construct_diffusion_model.dit_dropout = 0.0
+# Set to False for standard uniform patching, True for semantic component-aware patching
+construct_diffusion_model.dit_use_semantic_patching = True
+
+# DiT1D Network (these parameters are set via construct_diffusion_model)
+DiT1D.learned_sinusoidal_cond = True
+DiT1D.random_fourier_features = True
+DiT1D.learned_sinusoidal_dim = 16
+
+# Fallback MLP configuration (in case DiT doesn't load - should match original 25M param model)
+ResidualMLPDenoiser.mlp_width = 2048
+ResidualMLPDenoiser.num_layers = 6
+ResidualMLPDenoiser.learned_sinusoidal_cond = False
+ResidualMLPDenoiser.random_fourier_features = True
+ResidualMLPDenoiser.learned_sinusoidal_dim = 16
+ResidualMLPDenoiser.activation = 'relu'
+ResidualMLPDenoiser.layer_norm = False
+
+# Diffusion Model.
+ElucidatedDiffusion.num_sample_steps = 128
+ElucidatedDiffusion.sigma_data = 1.0
+ElucidatedDiffusion.S_churn = 80
+ElucidatedDiffusion.S_tmin = 0.05
+ElucidatedDiffusion.S_tmax = 50
+ElucidatedDiffusion.S_noise = 1.003
+
+# Training.
+# Adjusted for DiT memory requirements (transformer uses more memory than MLP)
+Trainer.train_batch_size = 1024 # 512      # Reduced from 1024 for DiT memory
+Trainer.small_batch_size = 256 # 128      # Reduced from 256 for DiT memory
+# Trainer.gradient_accumulate_every = 2  # Effective batch = 512*2 = 1024 (same as original)
+Trainer.train_lr = 1e-4             # DiT often benefits from lower learning rate
+Trainer.lr_scheduler = 'cosine'
+Trainer.weight_decay = 0.01         # Small weight decay for transformers
+Trainer.train_num_steps = 100000 # 100000 reduced for testing
+Trainer.save_and_sample_every = 100000 # 100000 reduced for testing
+
+# Generation (sampling).
+# With semantic patching (11 patches), memory is much better but still need reasonable batch size
+SimpleDiffusionGenerator.sample_batch_size = 25000  # 1000 samples per batch for 10GB GPU
+SimpleDiffusionGenerator.num_sample_steps = 128
+
+
