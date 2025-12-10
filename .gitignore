@@ -183,9 +183,9 @@ cython_debug/
 
 # --- Do not track generated data & logs ---
 .pydeps/
-data/
+# data/
 notebooks/src/
-results/
+# results/
 
 scripts/policies_slurm_logs/
 scripts/slurm/
