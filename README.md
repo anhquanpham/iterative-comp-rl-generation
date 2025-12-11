@@ -40,10 +40,8 @@ Robotic manipulation domains often contain a combinatorial number of possible ta
 
 1. Create a Python 3.9.6 virtual environment:
 ```bash
-python3.9 -m venv venv
+python3.9 -m venv first_3.9.6
 source venv/bin/activate  # On Linux/Mac
-# or
-venv\Scripts\activate  # On Windows
 ```
 
 2. Install dependencies from `requirements.txt`:
