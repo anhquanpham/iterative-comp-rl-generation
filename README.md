@@ -137,7 +137,9 @@ python3 -u -m scripts.run_transformer_baseline_pipeline \
 ├── results/                       # Experiment results
 │   ├── augmented_{iteration}/     # Iterative diffusion results
 │   └── transformer_baseline/      # Transformer baseline results
-├── scripts/                       # Main scripts (including both baseline scripts and large-scale scripts, which mirror the representative structure shown below)
+├── scripts/                       # Main scripts (including both baseline scripts
+                                   and large-scale scripts, which mirror the
+                                   representative structure shown below)
 │   ├── automated_iterative_diffusion_dits_iiwa.py  # Main pipeline
 │   ├── run_transformer_baseline_pipeline.py        # Transformer baseline
 │   ├── train_augmented_diffusion.py               # Diffusion training
