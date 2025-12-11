@@ -1,8 +1,8 @@
 # Iterative Compositional Data Generation for Robot Control
 
-This repository contains the official implementation of Iterative Compositional Data Generation (ICDG), introduced in "Iterative Compositional Data Generation for Robot Control" (Pham et al.). ICDG is a self-improving generative framework for robotic manipulation that uses a semantic compositional diffusion transformer to synthesize high-quality training data for unseen tasks.
+This repository contains the official implementation of the Iterative Compositional Data Generation (ICDG) pipeline introduced in "Iterative Compositional Data Generation for Robot Control" (Pham et al.). ICDG is a self-improving generative pipeline for robotic manipulation that uses a semantic compositional diffusion transformer to synthesize high-quality expert data for unseen tasks.
 
-Robotic manipulation domains often contain a combinatorial number of possible tasks, arising from combinations of different robots, objects, obstacles, and objectives. Collecting real demonstrations for all combinations is prohibitively expensive. ICDG leverages the underlying compositional structure of these domains to generalize far beyond the tasks it has been trained on, enabling large-scale capability growth from limited real data.
+Robotic manipulation domains often contain a combinatorial number of possible tasks, arising from combinations of different components, such as robots, objects, obstacles, and objectives. Collecting real demonstrations for all combinations is prohibitively expensive. ICDG leverages the underlying compositional structure of these domains to generalize far beyond the tasks it has been trained on, enabling large-scale capability growth from limited real data.
 
 <p align="center">
   <img width="90%" src="https://github.com/user-attachments/assets/c3cf0f25-b6e1-4b13-aaf6-6ab2334e1bfe" />
@@ -11,7 +11,7 @@ Robotic manipulation domains often contain a combinatorial number of possible ta
 ## Key Contributions
 
 - **Semantic Compositional Diffusion Transformer**:  
-  Factorizes each transition into robot-, object-, obstacle-, and objective-specific components and learns their interactions through attention, enabling strong compositional generalization.
+  Factorizes each transition into specific components and learns their interactions through attention, enabling strong compositional generalization.
 
 - **Zero-Shot Generation**:  
   Generates full state–action–next-state transitions for new task combinations that were never observed in real data.
