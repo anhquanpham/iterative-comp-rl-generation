@@ -1,16 +1,31 @@
 # Iterative Compositional Data Generation for Robot Control
 
-This repository implements the method described in "Iterative Compositional Data Generation for Robot Control" (Pham et al.). The code provides an iterative self-improvement procedure for generating high-quality synthetic robotic manipulation data using a semantic compositional diffusion transformer.
+This repository contains the official implementation of Iterative Compositional Data Generation (ICDG), introduced in "Iterative Compositional Data Generation for Robot Control" (Pham et al.). ICDG is a self-improving generative framework for robotic manipulation that uses a semantic compositional diffusion transformer to synthesize high-quality training data for unseen tasks.
+
+Robotic manipulation domains often contain a combinatorial number of possible tasks, arising from combinations of different robots, objects, obstacles, and objectives. Collecting real demonstrations for all combinations is prohibitively expensive. ICDG leverages the underlying compositional structure of these domains to generalize far beyond the tasks it has been trained on, enabling large-scale capability growth from limited real data.
+
+<p align="center">
+  <img width="90%" src="https://github.com/user-attachments/assets/c3cf0f25-b6e1-4b13-aaf6-6ab2334e1bfe" />
+</p>
+
+## Key Contributions
+
+Semantic Compositional Diffusion Transformer  
+Factorizes each transition into robot-, object-, obstacle-, and objective-specific components and learns their interactions through attention, enabling strong compositional generalization.
+
+Zero-Shot Generation  
+Generates full state–action–next-state transitions for new task combinations that were never observed in real data.
+
+Iterative Self-Improvement  
+Synthetic data is evaluated using offline RL; only high-quality, policy-validated transitions are added back into the training pool, allowing the model to continuously refine itself without additional real data collection.
+
+Data Efficiency and Generalization  
+Trained on real data from only 14 out of 64 tasks (approximately 20 percent), ICDG is able to generate useful data for the remaining tasks and ultimately solve nearly all held-out tasks.
+
+Emergent Compositional Structure  
+Attention patterns and intervention tests reveal that the model recovers meaningful task-factor dependencies, despite no hand-crafted structure being imposed.
 
 
-<img width="2317" height="722" alt="image" src="https://github.com/user-attachments/assets/c3cf0f25-b6e1-4b13-aaf6-6ab2334e1bfe" />
-
-
-**Key contributions:**
-- **Semantic Compositional Diffusion Transformer**: Factorizes transitions into robot-, object-, obstacle-, and objective-specific components
-- **Zero-shot Generation**: Generates high-quality transitions for unseen task combinations
-- **Iterative Self-Improvement**: Validates synthetic data via offline RL and incorporates successful data into subsequent training rounds
-- **Compositional Structure**: Demonstrates meaningful compositional structure in learned representations
 
 ## Setup
 
