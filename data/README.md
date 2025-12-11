@@ -14,12 +14,6 @@ data/
 │   ├── {ROBOT}_{OBJECT}_{OBSTACLE}_{SUBTASK}/
 │   │   └── data.hdf5
 │   └── ...
-├── medium-{robot}-offline-comp-data/
-│   └── ...
-├── random-{robot}-offline-comp-data/
-│   └── ...
-└── medium-replay-subsampled-{robot}-offline-comp-data/
-    └── ...
 ```
 
 ## Folder Naming Convention
@@ -57,7 +51,6 @@ Each task folder must contain a `data.hdf5` file with the following keys:
 - `terminals`: Terminal flags (shape: [1000000])
 - `timeouts`: Timeout flags (shape: [1000000])
 
-**Note**: Each dataset should contain exactly 1,000,000 transitions.
 
 ## Example Structure
 
@@ -81,7 +74,7 @@ data/
 
 The datasets can be downloaded from [Dryad](https://datadryad.org/stash/dataset/doi:10.5061/dryad.9cnp5hqps). We only need to download the expert datsets.
 
-After downloading, you may need to reorganize the data to match the expected structure above. The downloaded data is typically organized by robot arm.
+After downloading, you may need to unzip the data to match the expected structure above. The downloaded data is typically organized by robot arm.
 
 ## Usage in Code
 
