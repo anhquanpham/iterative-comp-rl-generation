@@ -10,20 +10,21 @@ Robotic manipulation domains often contain a combinatorial number of possible ta
 
 ## Key Contributions
 
-Semantic Compositional Diffusion Transformer  
-Factorizes each transition into robot-, object-, obstacle-, and objective-specific components and learns their interactions through attention, enabling strong compositional generalization.
+- **Semantic Compositional Diffusion Transformer**:  
+  Factorizes each transition into robot-, object-, obstacle-, and objective-specific components and learns their interactions through attention, enabling strong compositional generalization.
 
-Zero-Shot Generation  
-Generates full state–action–next-state transitions for new task combinations that were never observed in real data.
+- **Zero-Shot Generation**:  
+  Generates full state–action–next-state transitions for new task combinations that were never observed in real data.
 
-Iterative Self-Improvement  
-Synthetic data is evaluated using offline RL; only high-quality, policy-validated transitions are added back into the training pool, allowing the model to continuously refine itself without additional real data collection.
+- **Iterative Self-Improvement**:  
+  Synthetic data is evaluated using offline RL; only high-quality, policy-validated transitions are added back into the training pool, allowing the model to continuously refine itself without additional real data collection.
 
-Data Efficiency and Generalization  
-Trained on real data from only 14 out of 64 tasks (approximately 20 percent), ICDG is able to generate useful data for the remaining tasks and ultimately solve nearly all held-out tasks.
+- **Data Efficiency and Generalization**:  
+  Trained on real data from approximately 20 percent of possible task combinations, ICDG generates useful data for the remaining tasks and ultimately solves nearly all held-out tasks.
 
-Emergent Compositional Structure  
-Attention patterns and intervention tests reveal that the model recovers meaningful task-factor dependencies, despite no hand-crafted structure being imposed.
+- **Emergent Compositional Structure**:  
+  Attention patterns and intervention tests reveal that the model recovers meaningful task-factor dependencies, despite no hand-crafted structure being imposed.
+
 
 
 
