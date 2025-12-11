@@ -137,7 +137,7 @@ python3 -u -m scripts.run_transformer_baseline_pipeline \
 ├── results/                       # Experiment results
 │   ├── augmented_{iteration}/     # Iterative diffusion results
 │   └── transformer_baseline/      # Transformer baseline results
-├── scripts/                       # Main scripts
+├── scripts/                       # Main scripts (including both baseline scripts and large-scale scripts, which mirror the representative structure shown below)
 │   ├── automated_iterative_diffusion_dits_iiwa.py  # Main pipeline
 │   ├── run_transformer_baseline_pipeline.py        # Transformer baseline
 │   ├── train_augmented_diffusion.py               # Diffusion training
@@ -155,7 +155,7 @@ python3 -u -m scripts.run_transformer_baseline_pipeline \
 - **Iterative Self-Improvement**: Each iteration uses validated high-quality synthetic tasks to improve the diffusion model
 - **Zero-shot Generation**: Generates data for unseen task combinations without additional training
 - **Automatic Retry**: Failed jobs are automatically retried with increased resources
-- **Curriculum Learning**: Component-specific curriculum filtering for iterations 5+ (optional)
+- **Curriculum Filtering**: Component-specific curriculum filtering for iterations 5+ (optional)
 - **Adaptive Threshold**: Success threshold automatically reduces if no good tasks are found
 - **Comprehensive Logging**: Detailed logs and CSV analysis files for each iteration
 
