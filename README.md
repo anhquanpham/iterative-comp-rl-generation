@@ -172,10 +172,11 @@ Default paths are set in the script configuration classes. Modify these in the s
 If you use this code, please cite:
 
 ```bibtex
-@article{pham2026iterative,
+@article{pham2025iterative,
   title={Iterative Compositional Data Generation for Robot Control},
   author={Pham, Anh-Quan and Hussing, Marcel and Patankar, Shubhankar P. and Bassett, Dani S. and Mendez-Mendez, Jorge and Eaton, Eric},
-  year={2026}
+  journal={arXiv preprint arXiv:2512.10891},
+  year={2025},
 }
 ```
 
